@@ -53,3 +53,5 @@ python3 application/scripts/smoke_imx6ull_qemu.py --target build/buildroot/targe
 本目录迁入代码沿用 DshanControl 的 GPL-3.0-only；字体、SOEM、内核、U-Boot、Buildroot、无线固件和其他第三方组件遵守各自许可证。对应源码和 Buildroot `legal-info` 随镜像草稿交付，不能以应用源码包替代完整系统对应源码或厂商授权审核。
 
 2026-11-25 第一次整机构建发现 tzdata 源文件组选项需要 `asia`，已在 `.1` 配方修复；本地时区仍为 `Asia/Shanghai`。原无 `.1` 标签保持不动，未形成镜像 Release；本版镜像使用新的应用/硬件固定提交。
+
+本轮镜像草稿及全部远端附件的实际下载核验结果见 [2026-11-25 交付回执](DELIVERY-20261125.md)。
