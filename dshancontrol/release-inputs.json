@@ -1,0 +1,17 @@
+{
+  "release_kind": "system",
+  "version": "0.1.0-dev.20261125",
+  "stage": "draft",
+  "application_repository": "https://github.com/dshanpi/DshanControl",
+  "application_commit": "4aa797fae1a52fc03d810ed6018b3ffea7cdb310",
+  "application_source_sha256": "8e1e1cc23929c65b55d4a080b098a59d0c9cf17ff6d7bc07c688c8dc73a718ec",
+  "archive_command": "git archive --format=tar.gz COMMIT",
+  "bsp_repository": "https://github.com/100askTeam/aibsp-imx6ull-pro_linux5.4.47",
+  "bsp_commit": "e00afed02481332d2de44a498518b596651dcdef",
+  "kernel_commit": "05967a3aaba135f40eee6eaf14ced11c090d32c1",
+  "uboot_commit": "65baaf3fb37946b98d7c85ad5e014f9389d580a4",
+  "recipe": "scripts/prepare_imx6ull.py in the application commit",
+  "board_overlay": "boards/imx6ull-pro/buildroot in the application commit",
+  "standard": "DSP-LINUX-001/1.1.0",
+  "automatic_updates_qualified": false
+}

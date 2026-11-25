@@ -1,5 +1,9 @@
 # 100ASK_IMX6ULL-PRO linux5.4.47 AI 全自动开发
 
+**DshanControl 原生桌面板级集成：** [构建、代码归属、发布与验收边界](dshancontrol/README.md)。
+1024×600 LCD/Goodix、eMMC、Buildroot 配方及启动/维护代码已独立整理到 `dshancontrol/`，
+固定引用 DshanControl 应用提交；系统镜像交付为开发草稿，不代表生产 OTA 或整机验收完成。
+
 本仓库是 `i.MX6ULL Pro` 的完整交付工作区，目标是：
 - 用 `Buildroot` 统一构建 `U-Boot + Kernel + RootFS + 镜像`
 - 用 `uuu` 完成 USB 烧录（SDP/Fastboot 两种链路）

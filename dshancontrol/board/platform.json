@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "100ask-imx6ull-pro",
+  "board_id": "100ask-imx6ull-pro",
+  "soc": "nxp-imx6ull",
+  "architecture": "armv7-a",
+  "runtime_profile": "lite",
+  "capabilities": ["canopen", "modbus-rtu", "ethercat"],
+  "channels": {
+    "display0": {"kind": "display", "device": "/dev/fb0", "role": "local-hmi"},
+    "wifi0": {"kind": "wifi", "device": "wlan0", "role": "management"},
+    "can0": {"kind": "can", "device": "can0", "role": "canopen"},
+    "rs4850": {"kind": "serial", "device": "/dev/ttymxc2", "role": "modbus-rtu"},
+    "ethernet0": {"kind": "ethernet", "device": "eth0", "role": "management"},
+    "ethercat0": {"kind": "ethernet", "device": "eth1", "role": "ethercat"}
+  },
+  "update": {"strategy": "unprovisioned", "system_install": "board-image", "qualified": false},
+  "float_abi": "hard",
+  "bsp": {
+    "repository": "https://github.com/100askTeam/aibsp-imx6ull-pro_linux5.4.47",
+    "commit": "e00afed02481332d2de44a498518b596651dcdef",
+    "buildroot": "2026.02.1",
+    "kernel_commit": "05967a3aaba135f40eee6eaf14ced11c090d32c1",
+    "uboot_commit": "65baaf3fb37946b98d7c85ad5e014f9389d580a4",
+    "dtb": "imx6ull-14x14-evk.dtb"
+  },
+  "display": {"backend": "qt5-linuxfb", "framebuffer": "/dev/fb0", "input": "qt5-evdev", "width": 1024, "height": 600, "resolution_source": "user-specified", "panel": "not-board-tested"},
+  "media": {"backend": "ffmpeg-software", "output_width": 512, "output_height": 288, "output_fps": 10, "hardware_decode": false},
+  "application_update": {"enabled": false, "reason": "Board identity, storage contract and maintenance interlock are not provisioned"},
+  "validation_status": "boot-tested-services-development"
+}
