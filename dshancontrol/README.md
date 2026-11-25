@@ -18,7 +18,7 @@
 | `release-inputs.json` | 应用 A、BSP 基线、内核/U-Boot 提交和归档哈希 |
 | `prepare.py` | 校验 A/H 干净状态及迁移一致性，准备独立构建输出 |
 
-本次迁入的板级代码与应用提交 `4aa797fae1a52fc03d810ed6018b3ffea7cdb310` 中的板级快照逐文件一致。为保持本版可追溯构建，配方保留该快照布局并在准备时比对；后续板级改动在本仓库维护，并以新的硬件版本、应用引用和构建记录交付，不能修改既有标签。DshanControl 中的旧目录作为历史版本的重建输入保留。
+本次迁入的板级代码与应用提交 `ab981454fd095fb1101bea317ab8dcc33d94897b` 中的板级快照逐文件一致。为保持本版可追溯构建，配方保留该快照布局并在准备时比对；后续板级改动在本仓库维护，并以新的硬件版本、应用引用和构建记录交付，不能修改既有标签。DshanControl 中的旧目录作为历史版本的重建输入保留。
 
 ## 固定来源构建
 
@@ -26,9 +26,9 @@
 
 ```sh
 git clone https://github.com/dshanpi/aibsp-imx6ull-pro_linux5.4.47.git hardware
-git -C hardware checkout imx6ull-pro-integration-v0.1.0-dev.20261125
+git -C hardware checkout imx6ull-pro-integration-v0.1.0-dev.20261125.1
 git clone https://github.com/dshanpi/DshanControl.git application
-git -C application checkout 4aa797fae1a52fc03d810ed6018b3ffea7cdb310
+git -C application checkout ab981454fd095fb1101bea317ab8dcc33d94897b
 python3 hardware/dshancontrol/prepare.py --application "$PWD/application" --output "$PWD/build"
 CCACHE=none CCACHE_DISABLE=1 make -C build/buildroot -j8
 make -C build/buildroot legal-info
@@ -51,3 +51,5 @@ python3 application/scripts/smoke_imx6ull_qemu.py --target build/buildroot/targe
 发布执行 [DSP-LINUX-001 1.1.0](https://github.com/dshanpi/EinkOS/blob/main/standards/linux-board-release/v1.1.0/SPEC.md)。绑定实际镜像哈希记录编译、内容检查、模拟运行和逐附件回下载结果。新镜像烧录/启动、物理断电矩阵、外部总线从站、真实官网/涂鸦业务、语音 SDK 和老化未通过前保持 Draft。
 
 本目录迁入代码沿用 DshanControl 的 GPL-3.0-only；字体、SOEM、内核、U-Boot、Buildroot、无线固件和其他第三方组件遵守各自许可证。对应源码和 Buildroot `legal-info` 随镜像草稿交付，不能以应用源码包替代完整系统对应源码或厂商授权审核。
+
+2026-11-25 第一次整机构建发现 tzdata 源文件组选项需要 `asia`，已在 `.1` 配方修复；本地时区仍为 `Asia/Shanghai`。原无 `.1` 标签保持不动，未形成镜像 Release；本版镜像使用新的应用/硬件固定提交。
