@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 
@@ -63,6 +64,7 @@ def main():
     for path in (external / 'overlay/etc/init.d').iterdir():
         path.chmod(0o755)
     helper = snapshot / 'scripts/prepare_imx6ull.py'
+    sys.dont_write_bytecode = True
     spec = importlib.util.spec_from_file_location('config_merge', helper)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
