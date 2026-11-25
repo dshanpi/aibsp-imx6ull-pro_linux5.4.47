@@ -1,0 +1,16 @@
+uuu_version 1.4.149
+# DshanControl system-v0.1.0-dev.20261125.1--imx6ull-pro
+# DESTRUCTIVE: replaces the eMMC user-area partition table and boot0 bootloader.
+# For 100ask i.MX6ULL Pro only: USDHC2 / U-Boot MMC device 1.
+# Derived from NXP UUU emmc_all. Keep all three input files together.
+# BOOT_ACK=1 is required by this board's BSP and sampled boot straps.
+# ACK=0 caused ROM fallback to SDP; ACK=1 restored Linux boot on 2026-11-25.
+SDP: boot -f u-boot-dtb.imx -scanlimited 0x800000
+FB: ucmd setenv fastboot_dev mmc
+FB: ucmd setenv emmc_dev 1
+FB: ucmd setenv mmcdev 1
+FB: ucmd mmc dev 1 0
+FB: flash -raw2sparse all DshanControl-v0.1.0-dev.20261125.1-imx6ull-pro.img
+FB: flash -scanterm -scanlimited 0x800000 bootloader u-boot-dtb.imx
+FB: ucmd mmc partconf 1 1 1 0
+FB: done

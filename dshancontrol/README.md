@@ -55,3 +55,9 @@ python3 application/scripts/smoke_imx6ull_qemu.py --target build/buildroot/targe
 2026-11-25 第一次整机构建发现 tzdata 源文件组选项需要 `asia`，已在 `.1` 配方修复；本地时区仍为 `Asia/Shanghai`。原无 `.1` 标签保持不动，未形成镜像 Release；本版镜像使用新的应用/硬件固定提交。
 
 本轮镜像草稿及全部远端附件的实际下载核验结果见 [2026-11-25 交付回执](DELIVERY-20261125.md)。
+
+## 2026-11-25 LYNX Imager 烧录修正
+
+LYNX Imager 基础版的 i.MX6ULL/eMMC 路线需要 UUU 脚本与同目录镜像、引导文件，见 [安装说明与配方](install/lynx-imager/README.md)。初版外部配套包把 BOOT_ACK 固定为 0，与本板 BSP 的 `emmc_ack=1` 不符，导致 ROM 回退到 SDP。修正版使用 `mmc partconf 1 1 1 0`，只改变 ACK，不改变 boot0 启动选择。该修复不改变冻结的系统镜像或构建标签。
+
+现场已核验 boot0 和用户区 U-Boot 读回 CRC32 均为 `bc8f0db9`，与 527360 字节的构建产物一致。仅修正 ACK 后串口已出现 U-Boot、Linux 和 Buildroot 登录提示。这项证据仅覆盖启动恢复，不代表完成桌面业务、物理断电矩阵或生产验收。后续烧录不得继续使用旧 ACK=0 配方。
